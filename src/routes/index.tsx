@@ -1,20 +1,16 @@
-
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Etudiant from "../features/etudiant/etudiantPage";
-import Login from "../Auth/login";
+import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../components/dashboard";
 import Filiere from "../features/filiere/filierePage";
+import Etudiant from "../features/etudiant/etudiantPage";
 
-const AppRoutes = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* <Route path="/" element={<Navigate to="/etudiants" />} /> */}
-        <Route path="/etudiants" element={<Etudiant />} />
-        <Route path="/filieres" element={<Filiere />} />
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
-
-export default AppRoutes;
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <DashboardLayout />,
+    children: [
+      // { index: true, element: <Filiere /> },
+      { path: "/filieres", element: <Filiere /> },
+      { path: "/etudiants", element: <Etudiant /> },
+    ],
+  },
+]);

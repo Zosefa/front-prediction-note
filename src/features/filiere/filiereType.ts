@@ -1,7 +1,7 @@
 
 export type FiliereType = {
   id: number;
-  codeF: string;
+  codef: string;
   filiere: string;
   description: string;
 }
@@ -15,13 +15,13 @@ export type FiliereListResponse = {
 
 
 export type createFiliere = {
-  codeF: string;
+  codef: string;
   filiere: string;
   description: string;
 };
 
 export type updateFiliere = {
-  codeF: string;
+  codef: string;
   filiere: string;
   description: string;
 };

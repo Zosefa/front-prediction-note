@@ -1,7 +1,6 @@
-import AppRoutes from "./routes"
-import './index.css'; // ou './tailwind.css'
+import './index.css'; 
 function App() {
-  return <AppRoutes />
+  return null;
 }
 
 export default App

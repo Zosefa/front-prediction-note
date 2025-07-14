@@ -7,7 +7,6 @@ const axiosClient = axios.create({
   },
 });
 
-// Exemple d'intercepteur pour logging ou loader
 axiosClient.interceptors.request.use(
   (config) => {
     return config;
