@@ -115,11 +115,22 @@ export default function Etudiant() {
   if (loading) return <Loader />;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen dark:bg-gray-800">
       <ToastContainer />
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Liste des étudiants</h1>
+          
+        </div>
+
+        <div className="mb-4 flex justify-between items-center mb-6">
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={search}
+            onChange={handleSearchChange}
+            className="w-full md:w-1/3 px-4 py-2 border  dark:bg-gray-900 dark:text-gray-300 border-gray-300 rounded shadow-sm"
+          />
           <button
             onClick={handleAdd}
             className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition duration-300"
@@ -128,19 +139,9 @@ export default function Etudiant() {
           </button>
         </div>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Rechercher..."
-            value={search}
-            onChange={handleSearchChange}
-            className="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded shadow-sm"
-          />
-        </div>
-
-        <div className="overflow-x-auto bg-white shadow rounded-lg">
+        <div className="overflow-x-auto bg-white shadow  dark:bg-gray-900 dark:text-gray-300 rounded-lg">
           <table className="min-w-full table-auto text-sm">
-            <thead className="bg-gray-100 text-gray-600">
+            <thead className="bg-gray-100  dark:bg-gray-900 dark:text-gray-300 text-gray-600">
               <tr>
                 <th className="px-4 py-3 text-left">Matricule</th>
                 <th className="px-4 py-3 text-left">Nom</th>
@@ -196,8 +197,8 @@ export default function Etudiant() {
         </div>
 
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center  items-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-md  dark:bg-gray-900 dark:text-gray-300 w-full max-w-lg">
               <h2 className="text-xl font-semibold mb-4">
                 {editingEtudiant ? "Modifier étudiant" : "Ajouter étudiant"}
               </h2>
@@ -209,7 +210,7 @@ export default function Etudiant() {
                 <input name="adresse" value={formData.adresse} onChange={e => setFormData({ ...formData, adresse: e.target.value })} placeholder="Adresse" required className="w-full p-2 border rounded" />
 
                 <div className="flex items-center justify-center w-full">
-                  <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                  <label htmlFor="dropzone-file" className="flex flex-col items-center  dark:bg-gray-900 dark:text-gray-300 justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                     {formData.photo ? (
                       <img src={formData.photo} alt="preview" className="object-cover w-full h-full rounded-lg" />
                     ) : (

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import {  } from "./contactEtudiantAPI";
 import type { contactEtudiantType } from "./contactEtudiantType";
 
-export default function Etudiant () {
+export default function ContactEtudiant () {
     const [loading, setLoading] = useState(false);
     const [etudiant, setEtudiant] = useState<contactEtudiantType[]>([]);
     const [pagination, setPagination] = useState({

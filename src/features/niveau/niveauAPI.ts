@@ -1,7 +1,7 @@
 import axiosClient from "../../services/interceptor";
 import type { createNiveau, NiveauListResponse, NiveauType, updateNiveau } from "./niveauType";
 
-export const NiveauSservice = {
+export const NiveauService = {
   create: async (data: createNiveau): Promise<NiveauType> => {
     const response = await axiosClient.post("/niveau", data);
     return response.data;
