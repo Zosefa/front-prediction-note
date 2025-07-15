@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../components/dashboard";
 import Filiere from "../features/filiere/filierePage";
 import Etudiant from "../features/etudiant/etudiantPage";
+import Login from "../Auth/login";
 import Promotion from "../features/promotion/promotionPage";
 import Niveau from "../features/niveau/niveauPage";
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -17,4 +17,8 @@ export const router = createBrowserRouter([
       { path: "/niveau", element: <Niveau /> },
     ],
   },
+  {
+    path: "/login",
+    element: <Login />
+  }
 ]);
