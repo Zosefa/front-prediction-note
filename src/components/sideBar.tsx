@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Award, BarChart2, BookOpen, Calendar, Clipboard, FileText, Folder, Home, Layers, PieChart, Shield, User } from "react-feather";
+import { Award, BarChart2, BookOpen, Calendar, Camera, Clipboard, FileText, Folder, Home, Layers, PieChart, Shield, User, UserPlus } from "react-feather";
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const [studentDropdownOpen, setStudentDropdownOpen] = useState(false);
+  const [niveauDropdown, setNiveauDropdown] = useState(false);
   return (
     <aside
       id="logo-sidebar"
@@ -72,7 +73,7 @@ export default function Sidebar() {
 
           <li>
             <NavLink
-              to="#"
+              to="/filieres"
               className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               <Layers size={20} /> <span className="ms-3">Filières</span>
@@ -102,29 +103,60 @@ export default function Sidebar() {
               <BookOpen size={20} /> <span className="ms-3">Matières</span>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="#"
-              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+          <li className="relative">
+            <button
+              type="button"
+              onClick={() => setNiveauDropdown(!niveauDropdown)}
+              className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
-              <BarChart2 size={20} /> <span className="ms-3">Niveau</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
-              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              <Award size={20} /> <span className="ms-3">Niveau de promotion</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
-              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              <PieChart size={20} /> <span className="ms-3">Niveau de promotion matière</span>
-            </NavLink>
+              <BarChart2 size={20} />
+              <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                Niveau
+              </span>
+              <svg
+                className={`w-3 h-3 ms-auto transition-transform ${niveauDropdown ? 'rotate-180' : ''}`}
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+            {niveauDropdown && (
+              <ul className="py-2 space-y-2">
+                <li>
+                  <NavLink
+                    to="#"
+                    className="flex items-center w-full p-2 pl-11 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                  Liste des niveaux
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/niveau"
+                    className="flex items-center w-full p-2 pl-11 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                  Niveau par promotion
+                  </NavLink>
+                </li> 
+                <li>
+                  <NavLink
+                    to="#"
+                    className="flex items-center w-full p-2 pl-11 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                  Niveau par promotion / matière
+                  </NavLink>
+                </li> 
+              </ul>
+            )}
           </li>
           <li>
             <NavLink
@@ -148,6 +180,14 @@ export default function Sidebar() {
               className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               <Folder size={20} /> <span className="ms-3">Semestre niveau promotion</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/promotions"
+              className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            >
+              <Camera size={20} /> <span className="ms-3">Promotion</span>
             </NavLink>
           </li>
         </ul>
