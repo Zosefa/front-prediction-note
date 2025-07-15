@@ -8,19 +8,19 @@ export const EtudiantService = {
   },
 
   getAll: async (page = 1, size = 10, search = ''): Promise<EtudiantListResponse> => {
-    const response = await axiosClient.get("/etudiants", {
+    const response = await axiosClient.get("/etudiant", {
       params: { page, size, search }
     });
     return response.data;
   },
 
   getById: async (id: number): Promise<EtudiantType> => {
-    const response = await axiosClient.get(`/etudiants/${id}`);
+    const response = await axiosClient.get(`/etudiant/${id}`);
     return response.data;
   },
 
   delete: async (id: number): Promise<void> => {
-    await axiosClient.delete(`/etudiants/${id}`);
+    await axiosClient.delete(`/etudiant/${id}`);
   },
 
   update: async (id: number, data: updateEtudiant): Promise<EtudiantType> => {
