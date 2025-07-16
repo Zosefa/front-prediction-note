@@ -17,7 +17,7 @@ export default function Filiere() {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedId, setSelectedId] = useState(Number);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const [editingFiliere, setEditingFiliere] = useState<FiliereType | null>(null);
   const [formData, setFormData] = useState({
     codef: '', filiere: '', description: ''
@@ -47,12 +47,17 @@ export default function Filiere() {
 
   const handleDelete = async () => {
     if (selectedId) {
-      await FiliereService.delete(selectedId);
-      toast.success("Filière supprimé.");
-      loadFiliere();
+      try {
+        await FiliereService.delete(selectedId);
+        toast.success("Filière supprimée avec succès.");
+        setShowDeleteModal(false);
+        setSelectedId(null);
+        loadFiliere();
+      } catch {
+        toast.error("Erreur lors de la suppression.");
+      }
     }
   };
-
 
   const handleEdit = (filiere: FiliereType) => {
     setEditingFiliere(filiere);
@@ -113,7 +118,7 @@ export default function Filiere() {
             type="text"
             placeholder="Rechercher..."
             value={search}
-            onChange={handleSearchChange}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full md:w-1/3 px-4 py-2 dark:bg-gray-900 dark:text-white border border-gray-300 rounded shadow-sm"
           />
           <button
@@ -145,10 +150,11 @@ export default function Filiere() {
                       <Edit size={20} className="inline" />
                     </button>
                     <button onClick={() => {
-                      setSelectedId(fil.id)
+                      setSelectedId(fil.id);
                       setShowDeleteModal(true);
                     }
                     } className="text-red-600 hover:text-red-800">
+                      {/* bouton */}
                       <Trash2 size={20} className="inline" />
                     </button>
                   </td>
@@ -166,8 +172,9 @@ export default function Filiere() {
             </tbody>
           </table>
         </div>
+        {/* Modal de suppression */}
         {showDeleteModal && (
-          <div id="popup-modal" className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          <div id="popup-modal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div className="relative p-4 w-full max-w-md max-h-full">
               <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                 <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">

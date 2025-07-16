@@ -1,9 +1,19 @@
 import type { createEtudiant, EtudiantListResponse, EtudiantType, updateEtudiant } from "./etudiantType";
 import axiosClient from "../../services/interceptor";
+import type { contactEtudiantType, createContactEtudiant } from "../contactEtudiant.ts/contactEtudiantType";
 
 export const EtudiantService = {
   create: async (data: createEtudiant): Promise<EtudiantType> => {
-    const response = await axiosClient.post("/etudiants", data);
+    const response = await axiosClient.post("/etudiant", data, {
+      headers: {
+        'Content-Type': "multipart/form-data"
+      }
+    });
+    return response.data;
+  },
+  
+  createContact: async (data: createContactEtudiant): Promise<contactEtudiantType> => {
+    const response = await axiosClient.post("etudiant/create-contact", data);
     return response.data;
   },
 
@@ -24,9 +34,17 @@ export const EtudiantService = {
   },
 
   update: async (id: number, data: updateEtudiant): Promise<EtudiantType> => {
-    const response = await axiosClient.put(`/etudiants/${id}`, data);
+    const response = await axiosClient.put(`/etudiant/${id}`, data, {
+      headers: {
+        'Content-Type': "multipart/form-data"
+      }
+    });
     return response.data;
   },
 };
 
+
+export const ContactEtudiantService = {
+
+};
 
