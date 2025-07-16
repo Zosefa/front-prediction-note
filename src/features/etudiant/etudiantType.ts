@@ -34,3 +34,9 @@ export type updateEtudiant = {
   adresse: number;
   photo: number;
 };
+
+export type contactEtudiantType = {
+  id: number;
+  etudiantId: number;
+  contact: string;
+}

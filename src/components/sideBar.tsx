@@ -133,7 +133,7 @@ export default function Sidebar() {
               <ul className="py-2 space-y-2">
                 <li>
                   <NavLink
-                    to="#"
+                    to="/niveau"
                     className="flex items-center w-full p-2 pl-11 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                   Liste des niveaux
