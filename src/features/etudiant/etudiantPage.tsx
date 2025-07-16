@@ -22,6 +22,7 @@ interface FormDataType {
 }
 
 export default function Etudiant() {
+  const baseUrlImage = import.meta.env.VITE_API_IMAGE_ETUDIANT_URL;
   const [loading, setLoading] = useState(false);
   const [etudiants, setEtudiants] = useState<EtudiantType[]>([]);
   const [pagination, setPagination] = useState({
@@ -260,6 +261,7 @@ export default function Etudiant() {
                 <th className="px-4 py-3 text-left">Prénom</th>
                 <th className="px-4 py-3 text-left">Date de naissance</th>
                 <th className="px-4 py-3 text-left">Adresse</th>
+                <th className="px-4 py-3 text-left">Contact</th>
                 <th className="px-4 py-3 text-left">Actions</th>
               </tr>
             </thead>
@@ -267,7 +269,7 @@ export default function Etudiant() {
               {etudiants.length > 0 ? (
                 etudiants.map((etu) => {
                   const photoUrl = etu.photo
-                    ? `http://localhost:5000/etudiants/${etu.photo}`
+                    ? `${baseUrlImage}/${etu.photo}`
                     : "/default-avatar.png";
                   return (
                     <tr key={etu.id} className="border-b border-gray-100 hover:bg-gray-50">
@@ -285,6 +287,13 @@ export default function Etudiant() {
                         {new Date(etu.dateNaissance).toLocaleDateString()}
                       </td>
                       <td className="px-4 py-2">{etu.adresse}</td>
+                      <td className="px-4 py-2">
+                          <ul>
+                            {etu.ContactEtudiants.map((contact) => (
+                              <li key={contact.id}>{contact.contact}</li>
+                            ))}
+                          </ul>
+                      </td>
                       <td className="px-4 py-2 space-x-2">
                         <button
                           onClick={() => handleEdit(etu)}

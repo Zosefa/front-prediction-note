@@ -13,7 +13,9 @@ export const EtudiantService = {
   },
   
   createContact: async (data: createContactEtudiant): Promise<contactEtudiantType> => {
-    const response = await axiosClient.post("etudiant/create-contact", data);
+    const response = await axiosClient.post("etudiant/create-contact", {
+      idEtudiant: data.etudiantId,contactEtudiant: [{idEtudiant: data.etudiantId, contact: data.contact}]
+    });
     return response.data;
   },
 
