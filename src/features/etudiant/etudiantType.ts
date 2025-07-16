@@ -6,6 +6,7 @@ export type EtudiantType = {
   prenom: string;
   dateNaissance: Date;
   adresse: number;
+  ContactEtudiants: contactEtudiantType[];
   photo: string;
 }
 
@@ -34,3 +35,9 @@ export type updateEtudiant = {
   adresse: number;
   photo: number;
 };
+
+export type contactEtudiantType = {
+  id: number;
+  IdEtudiant: number;
+  contact: string;
+}
